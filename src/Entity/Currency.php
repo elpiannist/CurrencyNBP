@@ -13,13 +13,13 @@ class Currency
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, unique: 'true')]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, unique: 'true')]
     private $currency_code;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'float')]
     private $exchange_rate;
 
     public function getId(): ?int
@@ -51,12 +51,12 @@ class Currency
         return $this;
     }
 
-    public function getExchangeRate(): ?int
+    public function getExchangeRate(): ?float
     {
         return $this->exchange_rate;
     }
 
-    public function setExchangeRate(int $exchange_rate): self
+    public function setExchangeRate(float $exchange_rate): self
     {
         $this->exchange_rate = $exchange_rate;
 

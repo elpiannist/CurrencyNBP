@@ -19,6 +19,16 @@ class CurrencyRepository extends ServiceEntityRepository
         parent::__construct($registry, Currency::class);
     }
 
+    public function findByCurrencyCode(string $currencyCode): ?Currency
+    {
+        return $this->createQueryBuilder('c')
+        ->andWhere('c.currency_code = :val')
+        ->setParameter('val', $currencyCode)
+        ->getQuery()
+        ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Currency[] Returns an array of Currency objects
     //  */
